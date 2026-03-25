@@ -86,5 +86,5 @@ The divergence between the classical baseline and the quantum estimation is a kn
 * **Risk Management:** Implementing Quantum algorithms for calculating "The Greeks" (Delta, Gamma).
 
 ## 🤝 Connect with Me
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Rupajiet%20Bhattacharjee-blue?logo=linkedin)](https://linkedin.com/in/YOUR_LINK_HERE)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Rupajiet%20Bhattacharjee-blue?logo=linkedin)](https://www.linkedin.com/in/rupajiet-bhattacharjee-60932769)  
 [![GitHub](https://img.shields.io/badge/GitHub-rupajietishere-black?logo=github)](https://github.com/rupajietishere)
