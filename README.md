@@ -1,135 +1,63 @@
-# 🚀 Quantum Derivative Pricing
+# Quantum Derivative Pricing using Amplitude Estimation
+![Python](https://img.shields.io/badge/Python-3.8+-blue)
+![Qiskit](https://img.shields.io/badge/Qiskit-Quantum%20SDK-purple)
+![Quantum Computing](https://img.shields.io/badge/Quantum-Computing-brightgreen)
+![Finance](https://img.shields.io/badge/Domain-Quantitative%20Finance-yellowgreen)
 
-## 📌 Overview
-This project implements **derivative pricing models** using both classical and quantum-inspired techniques. It focuses on comparing **Black-Scholes**, **Monte Carlo simulation**, and **Quantum Amplitude Estimation (QAE)** to evaluate computational efficiency and accuracy.
+## Project Overview
+In Quantitative Finance, pricing complex derivatives typically relies on **Monte Carlo (MC) simulations**. However, classical MC simulations converge at a rate of $\mathcal{O}(1/\epsilon^2)$. This means to achieve 10x more accuracy, we need 100x more computational power.
 
----
+This project demonstrates how **Quantum Computing** can be leveraged to price a European Call Option. By utilizing **Iterative Quantum Amplitude Estimation (IAE)**, we aim to achieve a theoretical **quadratic speedup** yielding a convergence rate of $\mathcal{O}(1/\epsilon)$.
 
-## 🎯 Problem Statement
-Derivative pricing is computationally expensive, especially with Monte Carlo simulations. This project explores whether **quantum algorithms** can provide speedups in probabilistic estimation tasks used in finance.
+## Financial Parameters (Black-Scholes Context)
+We define the parameters for the underlying asset and the European Call Option using standard parameters typical in Black-Scholes-Merton (BSM) environments:
 
----
+* **Initial Spot Price ($S_0$):** $100
+* **Strike Price ($K$):** $110
+* **Volatility ($\sigma$):** 40%
+* **Risk-Free Rate ($r$):** 5%
+* **Time to Maturity:** 0.1 years (approx. 36 days)
 
-## 🧠 Implementations
+## The Quantum Approach
 
-### 🔹 Classical Models
-- **Black-Scholes Model**
-  - Closed-form analytical solution
-  - Baseline for accuracy
+### 1. Quantum Uncertainty Model
+Unlike classical Monte Carlo which generates sequential random paths, a quantum computer evaluates the entire probability distribution simultaneously in **superposition**. We map a **Log-Normal distribution** (representing future asset prices) onto `3` qubits, providing $2^3 = 8$ discrete values.
 
-- **Monte Carlo Simulation**
-  - Simulates multiple price paths
-  - Used for complex/non-analytic derivatives
+### 2. Payoff Function
+The payoff for a European Call Option at maturity is strictly non-linear: $\max(0, S_T - K)$. We build a quantum circuit that represents this piecewise linear payoff function and scale it so it can be evaluated via quantum phase estimation.
 
----
+### 3. Iterative Amplitude Estimation (IAE)
+We convert our pricing model into an estimation problem using **Iterative Amplitude Estimation (IAE)**. IAE is an optimized version of canonical QAE that relies entirely on Grover iterations and requires fewer auxiliary qubits—making it highly suitable for NISQ (Noisy Intermediate-Scale Quantum) era devices.
 
-### 🔹 Quantum Approach
-- **Quantum Amplitude Estimation (QAE) (Simulated)**
-  - Quadratic speedup over classical Monte Carlo
-  - Implemented using quantum simulation frameworks
+* **Sampler:** Qiskit 1.0 `StatevectorSampler`
+* **Target Precision ($\epsilon$):** 0.01 
+* **Confidence Interval ($\alpha$):** 0.05 (95% confidence)
 
----
+## Pricing Results
 
-## 📊 Results & Comparison
+Comparing the results of our Quantum Algorithm against the exact mathematical expectation calculated classically:
 
-| Method              | Accuracy        | Speed            | Notes |
-|--------------------|----------------|------------------|------|
-| Black-Scholes      | High           | Very Fast        | Analytical solution |
-| Monte Carlo        | Medium-High    | Slow             | Depends on iterations |
-| Quantum (Simulated)| Medium-High    | Faster (theoretical) | Requires quantum hardware |
-
-> ⚡ Quantum methods show **quadratic speedup potential** in estimation tasks.
-
----
-
-## 📈 Visualizations Included
-- Option payoff curves
-- Monte Carlo convergence plots
-- Error vs iterations comparison
-- Quantum vs classical estimation trends
-
----
-
-## 🛠 Tech Stack
-- Python
-- NumPy
-- Matplotlib
-- Qiskit (Quantum Simulation)
-
----
-
-## 📂 Project Structure
-
-```
-Quantum-Derivative-Pricing/
-│
-├── classical/
-│   ├── black_scholes.py
-│   ├── monte_carlo.py
-│
-├── quantum/
-│   ├── amplitude_estimation.py
-│
-├── notebooks/
-│   └── quantum_pricing.ipynb
-│
-├── main.py
-├── requirements.txt
-└── README.md
+```text
+=== PRICING RESULTS ===
+Classical Exact Expected Payoff:   $1.8578
+Quantum Estimated Expected Payoff: $2.3305
+Estimation Error:                   0.4728
 ```
 
----
+### Analysis & Interpretation
+* **Discretization of the Asset Price:** Because we used `num_qubits = 3`, the continuous log-normal distribution of the underlying asset is discretized into exactly 8 possible future states.
+* **The Payoff Function:** The European Call Option only holds value if the final asset price exceeds the Strike Price ($110). 
+* **Understanding the Estimation Error ($\approx \$0.47$):** The slight divergence between the Classical Exact expectation and the Quantum Estimation is expected. It is primarily driven by:
+  1. **Grid Resolution:** 3 qubits provide a very coarse grid. As we increase the number of qubits (e.g., to 5 or 6), the grid becomes exponentially finer, drastically reducing discretization error.
+  2. **Target Precision ($\epsilon$):** Our IAE was constrained by an $\epsilon = 0.01$ and $\alpha = 0.05$.
 
-## ▶️ How to Run
+### The Quantum Advantage
+While a 3-qubit model is a proof-of-concept, the underlying math proves the theory. Classically, achieving a high degree of precision requires Monte Carlo simulations that scale at $\mathcal{O}(1/\epsilon^2)$. By utilizing **Iterative Amplitude Estimation**, this quantum approach scales at $\mathcal{O}(1/\epsilon)$—offering a **quadratic speedup** for derivative pricing once deployed on fault-tolerant quantum hardware with higher qubit counts.
+
+## Requirements
+
+To run this notebook, you will need the following Python packages:
 
 ```bash
-git clone https://github.com/rupajietishere/Quantum-Derivative-Pricing
-cd Quantum-Derivative-Pricing
-pip install -r requirements.txt
-python main.py
+pip install qiskit qiskit-finance qiskit-algorithms numpy matplotlib
 ```
-
----
-
-## 🧪 Example Usage
-
-```python
-S = 100   # Asset price
-K = 100   # Strike price
-T = 1     # Time to maturity
-r = 0.05  # Risk-free rate
-sigma = 0.2  # Volatility
-```
-
----
-
-## 💡 Key Insights
-- Monte Carlo accuracy improves with more simulations but increases computation time.
-- Quantum Amplitude Estimation reduces required samples significantly.
-- Real-world quantum advantage depends on hardware maturity.
-
----
-
-## 🔮 Future Improvements
-- American Options pricing
-- Heston Model (stochastic volatility)
-- Real quantum hardware execution
-- GPU acceleration for Monte Carlo
-
----
-
-## 🎯 Use Cases
-- Quantitative Finance
-- Risk Modeling
-- Algorithmic Trading
-- Financial Engineering Research
-
----
-
-## 🙌 Conclusion
-This project demonstrates how **quantum computing concepts can be applied to financial problems**, highlighting both current limitations and future potential.
-
----
-
-## 📬 Contact
-Feel free to connect or reach out for collaboration!
