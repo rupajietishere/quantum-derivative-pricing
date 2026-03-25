@@ -117,7 +117,16 @@ jupyter notebook quantum/amplitude_estimation.ipynb
 |---|---|
 | Black-Scholes | $1.8536 |
 | Monte Carlo (1M paths) | $1.8492 |
-| Quantum AE (3 qubits) | $2.2363 |
+| Quantum AE (3 qubits) | $2.1877 |
+
+### Black-Scholes — Probability Distribution & Payoff
+![Black-Scholes](images/black_scholes.png)
+
+### Monte Carlo — Simulated Asset Price Distribution
+![Monte Carlo](images/monte_carlo.png)
+
+### Quantum AE — Asset Distribution vs Payoff Circuit
+![Quantum AE](images/amplitude_estimation.png)
 
 > Convergence plots and probability distribution visualizations are generated inside each notebook.
 
