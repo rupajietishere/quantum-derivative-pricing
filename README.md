@@ -24,18 +24,14 @@ The goal is to explore quantum advantage in derivative pricing, particularly for
 Quantum-Derivative-Pricing/
 │
 ├── classical/
-│   ├── black_scholes.py        # Analytical option pricing model
-│   ├── monte_carlo.py          # Simulation-based pricing
+│   ├── black_scholes.ipynb        # Analytical option pricing model
+│   ├── monte_carlo.ipynb          # Simulation-based pricing
 │
 ├── quantum/
-│   ├── amplitude_estimation.py # Quantum pricing approach
+│   ├── amplitude_estimation.ipynb # Quantum pricing approach
 │
-├── notebooks/
-│   └── quantum_pricing.ipynb   # Experimentation & visualization
-│
-├── main.py                     # Entry point to run models
-├── requirements.txt            # Dependencies
-└── README.md                   # Project documentation
+├── requirements.txt               # Dependencies
+└── README.md                      # Project documentation
 ```
 
 ---
@@ -58,7 +54,7 @@ Quantum-Derivative-Pricing/
 
 **Clone the repository:**
 ```bash
-git clone https://github.com/your-username/Quantum-Derivative-Pricing.git
+git clone https://github.com/rupajietishere/Quantum-Derivative-Pricing.git
 cd Quantum-Derivative-Pricing
 ```
 
@@ -78,14 +74,11 @@ pip install -r requirements.txt
 
 ## ▶️ Usage
 
-**Run full pipeline:**
+Open any notebook directly:
 ```bash
-python main.py
-```
-
-**Run Jupyter Notebook:**
-```bash
-jupyter notebook notebooks/quantum_pricing.ipynb
+jupyter notebook classical/black_scholes.ipynb
+jupyter notebook classical/monte_carlo.ipynb
+jupyter notebook quantum/amplitude_estimation.ipynb
 ```
 
 ---
@@ -113,22 +106,27 @@ jupyter notebook notebooks/quantum_pricing.ipynb
 - Python
 - NumPy
 - SciPy
-- Qiskit (for quantum simulations)
+- Qiskit / Qiskit Finance (for quantum simulations)
 - Matplotlib / Jupyter
 
 ---
 
 ## 📊 Example Output
 
-- Option price comparison across methods
-- Convergence plots (Monte Carlo vs Quantum)
-- Probability distribution visualization
+| Method | Expected Payoff |
+|---|---|
+| Black-Scholes | $1.8536 |
+| Monte Carlo (1M paths) | $1.8492 |
+| Quantum AE (3 qubits) | $2.2363 |
+
+> Convergence plots and probability distribution visualizations are generated inside each notebook.
 
 ---
 
 ## ⚠️ Limitations
 
 - Quantum algorithms are simulated (no real quantum hardware)
+- Low qubit count (3 qubits = 8 discrete price levels) introduces discretization error (~20% in current results)
 - Noise and hardware constraints not fully modeled
 - Requires understanding of both finance and quantum computing
 
@@ -136,6 +134,7 @@ jupyter notebook notebooks/quantum_pricing.ipynb
 
 ## 🔮 Future Improvements
 
+- Increase qubit count for better pricing accuracy
 - Integration with real quantum hardware (IBM Q)
 - Support for exotic options
 - Variance reduction techniques
@@ -143,10 +142,9 @@ jupyter notebook notebooks/quantum_pricing.ipynb
 
 ---
 
-## 🤝 Contributing
+## 🌟 Get Involved
 
-Contributions are welcome!
-Feel free to fork the repo and submit a pull request.
+Contributions are welcome! Feel free to fork the repo and submit a pull request.
 
 ---
 
