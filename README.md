@@ -41,7 +41,7 @@ This project was built using the latest **Qiskit 1.0** framework. During develop
 
 ## 🚀 Installation & Usage
 
-### Prerequisites
+## Prerequisites
 It is highly recommended to run this project inside a Python Virtual Environment to prevent dependency conflicts with global packages.
 
 ```bash
@@ -55,11 +55,14 @@ source venv/bin/activate  # On Windows use: venv\Scripts\activate
 
 # 3. Install dependencies
 pip install -r requirements.txt
+```
 
 ### Running the Jupyter Notebook
 To view the code, math, and interactive charts, launch Jupyter Notebook:
+
 ```bash
 jupyter notebook quantum_pricing.ipynb
+```
 
 ## 📊 Results & Analysis
 
@@ -71,17 +74,17 @@ jupyter notebook quantum_pricing.ipynb
 | **Quantum Estimated Payoff** | $2.3089 |
 | **Estimation Error** | $0.4512 |
 
-**Why the $0.45 error?**  
-The divergence between the classical baseline and the quantum estimation is a known **discretization error**. Because this model uses 3 qubits, the continuous asset distribution is constrained to a coarse grid of only 8 states. As the number of qubits scales up (e.g., 5 or 6 qubits), the grid becomes exponentially finer, drastically reducing this error. The current constraints successfully prove the theoretical quadratic speedup concept while remaining visually comprehensible.
+**Why the $0.45 error?**
+The divergence between the classical baseline and the quantum estimation is a known **discretization error**...
 
 ---
 
 ## 🔮 Future Scope
 
 * **Exotic Options:** Expanding the quantum circuit to price path-dependent options (e.g., Asian or Barrier Options).
-* **Real Hardware:** Porting the circuit from the local `StatevectorSampler` to actual IBM Quantum hardware via the IBM Quantum cloud.
+* **Real Hardware:** Porting the circuit from the local `StatevectorSampler` to actual IBM Quantum hardware.
 * **Risk Management:** Implementing Quantum algorithms for calculating "The Greeks" (Delta, Gamma).
 
 ## 🤝 Connect with Me
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Rupajiet%20Bhattacharjee-blue?logo=linkedin)](https://www.linkedin.com/in/rupajiet-bhattacharjee-60932769)  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Rupajiet%20Bhattacharjee-blue?logo=linkedin)](https://linkedin.com/in/YOUR_LINK_HERE)
 [![GitHub](https://img.shields.io/badge/GitHub-rupajietishere-black?logo=github)](https://github.com/rupajietishere)
