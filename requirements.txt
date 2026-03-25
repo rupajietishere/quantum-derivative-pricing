@@ -1,6 +1,7 @@
-qiskit>=1.0.0
+qiskit>=2.3.1
 qiskit-aer
 qiskit-finance
 qiskit-algorithms
 numpy
+scipy
 matplotlib
