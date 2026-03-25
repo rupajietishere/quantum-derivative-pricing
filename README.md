@@ -1,5 +1,12 @@
 # 📊 Quantum Derivative Pricing
 
+![Python](https://img.shields.io/badge/Python-3.13-blue?style=flat-square&logo=python)
+![Qiskit](https://img.shields.io/badge/Qiskit-2.3.1-purple?style=flat-square&logo=ibm)
+![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?style=flat-square&logo=jupyter)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Proof--of--Concept-yellow?style=flat-square)
+
+
 A hybrid classical + quantum computing project for pricing financial derivatives using traditional models and quantum algorithms such as Amplitude Estimation.
 
 ---
